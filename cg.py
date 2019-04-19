@@ -1,8 +1,9 @@
-import Tkinter as tk
+import tkinter as tk
 import numpy as np
 import math
 
-def rotacao(coordenadas, angulo):
+def rotacao(coordenadas, rad):
+	angulo = math.radians(rad)
 	M = np.array([ [math.cos(angulo), -math.sin(angulo)],
 				   [math.sin(angulo), math.cos(angulo)] ])
 
@@ -34,8 +35,8 @@ def reflexao_reta(coordenadas):
 
 figura = {
 	# 'triangulo': [(0, 40), (20, 0), (40, 40)],
-	'triangulo': [(0, 40), (10, 0), (30, 20)],
-	# 'quadrado':  [(10, 100), (10, 10), (100, 10), (100, 100)]
+	# 'triangulo': [(0, 40), (10, 0), (30, 20)],
+	'quadrado':  [(10, 100), (10, 10), (100, 10), (100, 100)]
 }
 
 cv = tk.Canvas(tk.Tk(),height="500",width="500",bg="white")
@@ -45,7 +46,7 @@ for f in figura:
 	cv.create_line(figura[f]+[figura[f][0]])
 	# r = rotacao(figura[f], 90)
 	# r.append(r[0])
-	r = reflexao_reta(figura[f])
+	r = rotacao(figura[f],45)
 	cv.create_line(translacao(r, 120, 120))
 	# cv.create_line(translacao(figura[f], 100))
 
