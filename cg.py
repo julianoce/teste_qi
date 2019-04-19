@@ -11,13 +11,11 @@ def rotacao(coordenadas, rad):
 
 
 def translacao(coordenadas, xt=0, yt=0):
-	T = [(x+xt, y+yt) for x, y in coordenadas]
-	return T+[T[0]]
+	return [(x+xt, y+yt) for x, y in coordenadas]
 
 
 def escalonar(coordenadas, xt=1, yt=1):
 	M = np.array([[xt, 0],[0, yt]])
-
 	return [list(l) for l in np.matmul(np.array(coordenadas), M)]
 
 
@@ -27,14 +25,13 @@ def reflexao_eixo(coordenadas, xt=1, yt=1):
 
 def reflexao_reta(coordenadas):
 	M = np.array([[0, 1],[1, 0]])
-
 	return [list(l) for l in np.matmul(np.array(coordenadas), M)]
 
 
 reta = {
 	"vertices": {
 		"v1": [0,0], 
-		"v2": [0, 40]
+		"v2": [0, 30]
 	},
 	"faces": {
 		"f1": ["v1", "v2"]
@@ -198,15 +195,15 @@ class Interface:
 		for f in figura["faces"]:
 			face = figura["faces"][f]
 			vertices = [figura["vertices"][v] for v in face]
-			return rotacao(vertices+[vertices[0]], angulo)
+			return rotacao(vertices, angulo)
 	
 	
 	def primeira_pergunta(self):
 		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 1:")
 		self.plotar_figura(triangulo,50,50)
-		self.mais_1 = self.plotar_figura(reta, 130,50)
-		self.mais_2 = self.rotacionar(reta, 90)
-		self.cv.create_line(self.mais_2, 130, 50)
+		self.plotar_figura(reta, 130,55)
+		self.reta_90 = self.rotacionar(reta, 90)
+		self.cv.create_line(translacao(self.reta_90,115,70))
 		# self.cv.create_text(120,70,fill="black",font="Times 30", text="+")
 		self.plotar_figura(quadrado,180,50)
 		# self.cv.create_text(240,70,fill="black",font="Times 30", text="=")
