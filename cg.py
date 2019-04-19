@@ -30,12 +30,12 @@ def reflexao_reta(coordenadas):
 	return [list(l) for l in np.matmul(np.array(coordenadas), M)]
 
 
-
-
 figura = {
-	# 'triangulo': [(0, 40), (20, 0), (40, 40)],
-	'triangulo': [(0, 40), (10, 0), (30, 20)],
-	# 'quadrado':  [(10, 100), (10, 10), (100, 10), (100, 100)]
+	# 'reta': [[0,0], [0, 40]],
+	# 'triangulo': [[0, 40], [20, 0], [40, 40],
+	# 'quadrado':  [[0, 0], [40, 0], [40, 40], [0, 40],
+	# 'pentagono': [[0, 0], [0, 20], [20, 30], [40,10], [20, -10]],
+	'hexagono': [[0, 0], [0, 20], [20, 30], [40,20], [40,0], [20, -10]]
 }
 
 cv = tk.Canvas(tk.Tk(),height="500",width="500",bg="white")
@@ -43,10 +43,10 @@ cv.pack()
 
 for f in figura:
 	cv.create_line(figura[f]+[figura[f][0]])
-	# r = rotacao(figura[f], 90)
-	# r.append(r[0])
-	r = reflexao_reta(figura[f])
-	cv.create_line(translacao(r, 120, 120))
-	# cv.create_line(translacao(figura[f], 100))
+	r = rotacao(figura[f], 90)
+	r.append(r[0])
+	# r = reflexao_reta(figura[f])
+	# cv.create_line(translacao(r, 120, 120))
+	cv.create_line(translacao(figura[f], 100, 100))
 
 tk.mainloop()
