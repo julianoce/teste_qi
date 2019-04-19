@@ -1,4 +1,4 @@
-import Tkinter as tk
+import tkinter as tk
 import numpy as np
 import math
 
@@ -29,14 +29,6 @@ def reflexao_reta(coordenadas):
 	M = np.array([[0, 1],[1, 0]])
 
 	return [list(l) for l in np.matmul(np.array(coordenadas), M)]
-
-
-def test(figura):
-	for f in figura["faces"]:
-		face = figura["faces"][f]
-		vertices = [figura["vertices"][v] for v in face]
-		cv.create_line(vertices+[vertices[0]])
-		cv.create_line(translacao(vertices+[vertices[0]], 120, 120))
 
 
 reta = {
@@ -189,9 +181,45 @@ casa = {
 }
 
 
-cv = tk.Canvas(tk.Tk(),height="500",width="500",bg="white")
-cv.pack()
 
-test(casa)
+class Interface:
+	def __init__(self, master):
+		self.root = root
+		self.root.wm_title('Teste de QI')
+		self.cv = tk.Canvas(self.root,height="500",width="500",bg="white")
+	
+	def plotar_figura(self, figura, posicao_x, posicao_y):
+		for f in figura["faces"]:
+			face = figura["faces"][f]
+			vertices = [figura["vertices"][v] for v in face]
+			self.cv.create_line(translacao(vertices+[vertices[0]], posicao_x, posicao_y))
+	
+	def rotacionar(self, figura, angulo):
+		for f in figura["faces"]:
+			face = figura["faces"][f]
+			vertices = [figura["vertices"][v] for v in face]
+			return rotacao(vertices+[vertices[0]], angulo)
+	
+	
+	def primeira_pergunta(self):
+		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 1:")
+		self.plotar_figura(triangulo,50,50)
+		self.mais_1 = self.plotar_figura(reta, 130,50)
+		self.mais_2 = self.rotacionar(reta, 90)
+		self.cv.create_line(self.mais_2, 130, 50)
+		# self.cv.create_text(120,70,fill="black",font="Times 30", text="+")
+		self.plotar_figura(quadrado,180,50)
+		# self.cv.create_text(240,70,fill="black",font="Times 30", text="=")
+		self.plotar_figura(heptagono,290,50)
+		
+		
 
-tk.mainloop()
+		self.cv.pack(side="top", fill="both", expand=True)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    main = Interface(root)
+
+main.primeira_pergunta()
+
+root.mainloop()
