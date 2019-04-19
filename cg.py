@@ -206,8 +206,25 @@ class Interface:
 		self.cv.create_line(translacao(self.reta_90,115,70))
 		# self.cv.create_text(120,70,fill="black",font="Times 30", text="+")
 		self.plotar_figura(quadrado,180,50)
-		# self.cv.create_text(240,70,fill="black",font="Times 30", text="=")
-		self.plotar_figura(heptagono,290,50)
+		self.cv.create_line(translacao(self.reta_90,250,65))
+		self.cv.create_line(translacao(self.reta_90,250,75))
+		self.plotar_figura(heptagono,330,50)
+
+		self.plotar_figura(hexagono, 80,120)
+		self.cv.create_line(translacao(self.reta_90, 115, 135))
+		self.plotar_figura(triangulo, 180, 110)
+		self.cv.create_line(translacao(self.reta_90,250,130))
+		self.cv.create_line(translacao(self.reta_90,250,140))
+		self.plotar_figura(triangulo, 310, 110)
+
+		self.plotar_figura(octogono, 80,180)
+		self.cv.create_line(translacao(self.reta_90,115,200))
+		self.plotar_figura(triangulo, 180, 170)
+		self.cv.create_line(translacao(self.reta_90,250,190))
+		self.cv.create_line(translacao(self.reta_90,250,200))
+		self.cv.create_text(330,190,fill="black",font="Times 30", text="?")
+
+
 		self.cv.pack(side="top", fill="both", expand=True)
 	
 	def quinta_pergunta(self):
@@ -230,6 +247,6 @@ if __name__ == "__main__":
     root = tk.Tk()
     main = Interface(root)
 
-main.quinta_pergunta()
+main.primeira_pergunta()
 
 root.mainloop()
