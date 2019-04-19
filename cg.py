@@ -6,13 +6,7 @@ def rotacao(coordenadas, angulo):
 	M = np.array([ [math.cos(angulo), -math.sin(angulo)],
 				   [math.sin(angulo), math.cos(angulo)] ])
 
-	T = []
-	for xy in coordenadas:
-		T.append((list(np.matmul(np.array(xy), M))))
-
-	print(T)
-
-	return T+[T[0]]
+	return [list(l) for l in np.matmul(np.array(coordenadas), M)]
 
 
 def translacao(coordenadas, xt=0, yt=0):
@@ -20,11 +14,27 @@ def translacao(coordenadas, xt=0, yt=0):
 	return T+[T[0]]
 
 
-def escalonar(coordenadas, xt=0, yt=0)
+def escalonar(coordenadas, xt=1, yt=1):
+	M = np.array([[xt, 0],[0, yt]])
+
+	return [list(l) for l in np.matmul(np.array(coordenadas), M)]
+
+
+def reflexao_eixo(coordenadas, xt=1, yt=1):
+	return escalonar(coordenadas, xt, yt)
+
+
+def reflexao_reta(coordenadas):
+	M = np.array([[0, 1],[1, 0]])
+
+	return [list(l) for l in np.matmul(np.array(coordenadas), M)]
+
+
 
 
 figura = {
-	'triangulo': [(0, 40), (20, 0), (40, 40)],
+	# 'triangulo': [(0, 40), (20, 0), (40, 40)],
+	'triangulo': [(0, 40), (10, 0), (30, 20)],
 	# 'quadrado':  [(10, 100), (10, 10), (100, 10), (100, 100)]
 }
 
@@ -33,7 +43,9 @@ cv.pack()
 
 for f in figura:
 	cv.create_line(figura[f]+[figura[f][0]])
-	r = rotacao(figura[f], 45)
+	# r = rotacao(figura[f], 90)
+	# r.append(r[0])
+	r = reflexao_reta(figura[f])
 	cv.create_line(translacao(r, 120, 120))
 	# cv.create_line(translacao(figura[f], 100))
 
