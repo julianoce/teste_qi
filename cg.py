@@ -224,6 +224,17 @@ class Interface:
 		self.cv.create_line(translacao(self.reta_90,250,200))
 		self.cv.create_text(330,190,fill="black",font="Times 30", text="?")
 
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
+		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
+		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
+		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
+		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
 
 		self.cv.pack(side="top", fill="both", expand=True)
 	
@@ -240,6 +251,19 @@ class Interface:
 		self.plotar_figura(seta,50,190)
 		self.plotar_figura(casa,130,190)
 		self.cv.create_text(220,190,fill="black",font="Times 30", text="?")
+
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
+		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
+		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
+		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
+		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
+
 
 		self.cv.pack(side="top", fill="both", expand=True)
 
