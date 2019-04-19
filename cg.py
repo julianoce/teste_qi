@@ -211,8 +211,21 @@ class Interface:
 		self.plotar_figura(quadrado,180,50)
 		# self.cv.create_text(240,70,fill="black",font="Times 30", text="=")
 		self.plotar_figura(heptagono,290,50)
-		
-		
+		self.cv.pack(side="top", fill="both", expand=True)
+	
+	def quinta_pergunta(self):
+		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 5:")
+		self.plotar_figura(estrela,50,70)
+		self.plotar_figura(seta,130,65)
+		self.plotar_figura(casa,200,70)
+
+		self.plotar_figura(casa,50,130)
+		self.plotar_figura(estrela,130,130)
+		self.plotar_figura(seta,200,130)
+
+		self.plotar_figura(seta,50,190)
+		self.plotar_figura(casa,130,190)
+		self.cv.create_text(220,190,fill="black",font="Times 30", text="?")
 
 		self.cv.pack(side="top", fill="both", expand=True)
 
@@ -220,6 +233,6 @@ if __name__ == "__main__":
     root = tk.Tk()
     main = Interface(root)
 
-main.primeira_pergunta()
+main.quinta_pergunta()
 
 root.mainloop()
