@@ -5,6 +5,7 @@ class Interface:
 	def __init__(self, master):
 		self.root = master
 		self.root.wm_title('Teste de QI')
+		self.pontuacao = 0
 		self.cv = tk.Canvas(self.root,height="350",width="350",bg="white")
 
 		self.reta = {
@@ -193,20 +194,6 @@ class Interface:
 			vertices = [figura["vertices"][v] for v in face]
 			return escalonamento(vertices, x, y)
 
-
-	def botoes(self):
-		#respostas
-		self.resposta_a = tk.Button(self.cv, text = 'A', width = 3)
-		self.resposta_a_window = self.cv.create_window(50, 320, window=self.resposta_a)
-
-		self.resposta_b = tk.Button(self.cv, text = 'B', width = 3)
-		self.resposta_b_window = self.cv.create_window(135, 320, window=self.resposta_b)
-
-		self.resposta_c = tk.Button(self.cv, text = 'C', width = 3)
-		self.resposta_c_window = self.cv.create_window(215, 320, window=self.resposta_c)
-
-		self.resposta_d = tk.Button(self.cv, text = 'D', width = 3)
-		self.resposta_d_window = self.cv.create_window(300, 320, window=self.resposta_d)
 	
 	def fechar_janela(self):
 		self.root.destroy()
@@ -220,7 +207,8 @@ class Interface:
 		
 		self.cv.pack(side="top", fill="both", expand=True)
 
-		
+
+
 	
 	def primeira_pergunta(self):
 		self.cv.delete("all")
@@ -285,9 +273,25 @@ class Interface:
 		d = translacao(escalonamento(d, 1.15, 1.15), 312, 260)
 		self.draw(d, "blue")
 
-		self.botoes()
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 3, command = self.segunda_pergunta)
+		self.resposta_a_window = self.cv.create_window(50, 320, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 3, command = self.segunda_pergunta)
+		self.resposta_b_window = self.cv.create_window(135, 320, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 3, command = self.resposta_certa_1)
+		self.resposta_c_window = self.cv.create_window(215, 320, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 3, command = self.segunda_pergunta)
+		self.resposta_d_window = self.cv.create_window(300, 320, window=self.resposta_d)
 
 		self.cv.pack(side="top", fill="both", expand=True)
+
+				
+	def resposta_certa_1(self):
+		self.pontuacao += 1
+		self.segunda_pergunta()
+
 
 
 	def segunda_pergunta(self):
@@ -367,9 +371,24 @@ class Interface:
 		d = translacao(d, 280, 280)
 		self.draw(d, "blue")
 
-		self.botoes()
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 3, command = self.terceira_pergunta)
+		self.resposta_a_window = self.cv.create_window(50, 320, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 3, command = self.terceira_pergunta)
+		self.resposta_b_window = self.cv.create_window(135, 320, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 3, command = self.resposta_certa_2)
+		self.resposta_c_window = self.cv.create_window(215, 320, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 3, command = self.terceira_pergunta)
+		self.resposta_d_window = self.cv.create_window(300, 320, window=self.resposta_d)
+
 
 		self.cv.pack(side="top", fill="both", expand=True)
+
+	def resposta_certa_2(self):
+		self.pontuacao += 1
+		self.terceira_pergunta()
 
 
 	def terceira_pergunta(self):
@@ -423,9 +442,24 @@ class Interface:
 		self.draw(d, "blue")
 
 
-		self.botoes()
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 3, command = self.quarta_pergunta)
+		self.resposta_a_window = self.cv.create_window(50, 320, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 3, command = self.quarta_pergunta)
+		self.resposta_b_window = self.cv.create_window(135, 320, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 3, command = self.quarta_pergunta)
+		self.resposta_c_window = self.cv.create_window(215, 320, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 3, command = self.resposta_certa_3)
+		self.resposta_d_window = self.cv.create_window(300, 320, window=self.resposta_d)
 
 		self.cv.pack(side="top", fill="both", expand=True)
+
+	def resposta_certa_3(self):
+		self.pontuacao += 1
+		self.quarta_pergunta()
+
 
 
 	def quarta_pergunta(self):
@@ -492,9 +526,25 @@ class Interface:
 		d = rotacao(d,30)
 		d = translacao(d, 309, 255)
 		self.draw(d, "blue")
-		self.botoes()
 
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 3, command = self.quinta_pergunta)
+		self.resposta_a_window = self.cv.create_window(50, 320, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 3, command = self.quinta_pergunta)
+		self.resposta_b_window = self.cv.create_window(135, 320, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 3, command = self.resposta_certa_4)
+		self.resposta_c_window = self.cv.create_window(215, 320, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 3, command = self.quinta_pergunta)
+		self.resposta_d_window = self.cv.create_window(300, 320, window=self.resposta_d)
+		
 		self.cv.pack(side="top", fill="both", expand=True)
+
+	def resposta_certa_4(self):
+		self.pontuacao += 1
+		self.quinta_pergunta()
+
 
 	
 	def quinta_pergunta(self):
@@ -545,7 +595,28 @@ class Interface:
 		self.draw(d, "blue")
 
 
-		self.botoes()
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 3, command = self.tela_final)
+		self.resposta_a_window = self.cv.create_window(50, 320, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 3, command = self.resposta_certa_5)
+		self.resposta_b_window = self.cv.create_window(135, 320, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 3, command = self.tela_final)
+		self.resposta_c_window = self.cv.create_window(215, 320, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 3, command = self.tela_final)
+		self.resposta_d_window = self.cv.create_window(300, 320, window=self.resposta_d)
 
 
+		self.cv.pack(side="top", fill="both", expand=True)
+
+	def resposta_certa_5(self):
+		self.pontuacao +=1
+		self.tela_final() 
+
+	def tela_final(self): 
+		self.cv.delete("all")
+		self.cv.create_text(150,30,fill="blue",font="Times 20", text="Você acertou "+str(self.pontuacao)+" pontos!")
+		self.fechar = tk.Button(self.cv, text = 'Fechar', width = 7, command=self.fechar_janela)
+		self.fechar_window = self.cv.create_window(150, 100, window=self.fechar)
 		self.cv.pack(side="top", fill="both", expand=True)
