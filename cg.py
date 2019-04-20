@@ -206,30 +206,46 @@ class Interface:
 	
 	def primeira_pergunta(self):
 		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 1:")
+
+		#linha 01
 		self.plotar_figura(triangulo,50,50)
+
 		self.plotar_figura(reta, 130,55)
 		self.reta_90 = self.rotacionar(reta, 90)
 		self.cv.create_line(translacao(self.reta_90,115,70))
-		# self.cv.create_text(120,70,fill="black",font="Times 30", text="+")
+
 		self.plotar_figura(quadrado,180,50)
+
 		self.cv.create_line(translacao(self.reta_90,250,65))
 		self.cv.create_line(translacao(self.reta_90,250,75))
+
 		self.plotar_figura(heptagono,330,50)
 
+		#linha 02
 		self.plotar_figura(hexagono, 80,120)
+
 		self.cv.create_line(translacao(self.reta_90, 115, 135))
+
 		self.plotar_figura(triangulo, 180, 110)
+
 		self.cv.create_line(translacao(self.reta_90,250,130))
 		self.cv.create_line(translacao(self.reta_90,250,140))
+
 		self.plotar_figura(triangulo, 310, 110)
 
+		#linha 03
 		self.plotar_figura(octogono, 80,180)
+
 		self.cv.create_line(translacao(self.reta_90,115,200))
+
 		self.plotar_figura(triangulo, 180, 170)
+
 		self.cv.create_line(translacao(self.reta_90,250,190))
 		self.cv.create_line(translacao(self.reta_90,250,200))
+
 		self.cv.create_text(330,190,fill="black",font="Times 30", text="?")
 
+		#respostas
 		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
 		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
 
@@ -244,12 +260,12 @@ class Interface:
 
 		self.cv.pack(side="top", fill="both", expand=True)
 
+	#fazer
 	def segunda_pergunta(self):
 		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 2:")
-		self.plotar_figura(nave, 50, 50)
 
 
-
+		#respostas
 		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
 		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
 
@@ -354,7 +370,7 @@ class Interface:
 
 		self.cv.create_text(230,210,fill="black",font="Times 30", text="?")
 
-
+		#respostas
 		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
 		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
 
@@ -371,18 +387,23 @@ class Interface:
 	
 	def quinta_pergunta(self):
 		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 5:")
+		
+		#linha 01
 		self.plotar_figura(estrela,50,70)
 		self.plotar_figura(seta,130,65)
 		self.plotar_figura(casa,200,70)
 
+		#linha 02
 		self.plotar_figura(casa,50,130)
 		self.plotar_figura(estrela,130,130)
 		self.plotar_figura(seta,200,130)
 
+		#linha 03
 		self.plotar_figura(seta,50,190)
 		self.plotar_figura(casa,130,190)
 		self.cv.create_text(220,190,fill="black",font="Times 30", text="?")
 
+		#respostas
 		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
 		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
 
