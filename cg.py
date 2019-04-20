@@ -11,7 +11,7 @@ def rotacao(coordenadas, rad):
 
 
 def translacao(coordenadas, xt=0, yt=0):
-	return [(x+xt, y+yt) for x, y in coordenadas]
+	return [[x+xt, y+yt] for x, y in coordenadas]
 
 
 def escalonar(coordenadas, xt=1, yt=1):
@@ -237,6 +237,73 @@ class Interface:
 		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
 
 		self.cv.pack(side="top", fill="both", expand=True)
+
+	def segunda_pergunta(self):
+		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 2:")
+		self.plotar_figura(nave, 50, 50)
+
+
+
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
+		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
+		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
+		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
+		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
+		self.cv.pack(side="top", fill="both", expand=True)
+
+
+	def terceira_pergunta(self):
+		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 3:")
+		
+		#linha 01
+		self.nave_90 = translacao(self.rotacionar(nave, 90), 50, 90)
+		self.cv.create_line(self.nave_90+self.nave_90[0])
+
+		self.nave_45 = translacao(self.rotacionar(nave, 45), 120, 70)
+		self.cv.create_line(self.nave_45+self.nave_45[0])
+
+		self.plotar_figura(nave, 200, 50)
+
+		#linha 02
+		self.nave_180 = translacao(self.rotacionar(nave, 180), 90, 150)
+		self.cv.create_line(self.nave_180+self.nave_180[0])
+		
+		self.nave_135 = translacao(self.rotacionar(nave, 135), 140, 155)
+		self.cv.create_line(self.nave_135+self.nave_135[0])
+		
+		self.nave_90 = translacao(self.rotacionar(nave, 90), 200, 150)
+		self.cv.create_line(self.nave_90+self.nave_90[0])
+		
+		#linha 03
+		self.nave_270 = translacao(self.rotacionar(nave, 270), 94, 180)
+		self.cv.create_line(self.nave_270+self.nave_270[0])
+		
+		self.nave_225 = translacao(self.rotacionar(nave, 225), 170, 206)
+		self.cv.create_line(self.nave_225+self.nave_225[0])
+
+		self.cv.create_text(220,190,fill="black",font="Times 30", text="?")
+
+		#respostas
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
+		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
+		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
+		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
+		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
+		self.cv.pack(side="top", fill="both", expand=True)
+
+
 	
 	def quinta_pergunta(self):
 		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 5:")
@@ -271,6 +338,6 @@ if __name__ == "__main__":
     root = tk.Tk()
     main = Interface(root)
 
-main.primeira_pergunta()
+main.terceira_pergunta()
 
 root.mainloop()
