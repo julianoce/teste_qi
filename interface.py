@@ -1,11 +1,11 @@
-import tkinter as tk
+import Tkinter as tk
 from transformacao import *
 
 class Interface:
 	def __init__(self, master):
 		self.root = master
 		self.root.wm_title('Teste de QI')
-		self.cv = tk.Canvas(self.root,height="500",width="500",bg="white")
+		self.cv = tk.Canvas(self.root,height="350",width="350",bg="white")
 
 		self.reta = {
 			"vertices": {
@@ -168,8 +168,8 @@ class Interface:
 		}
 
 
-	def draw(self, coordenadas):
-		self.cv.create_line([(x,y) for x, y, _ in coordenadas+[coordenadas[0]]])
+	def draw(self, coordenadas, color="black"):
+		self.cv.create_line([(x,y) for x, y, _ in coordenadas+[coordenadas[0]]], fill=color)
 
 	
 	def plotar_figura(self, figura, posicao_x, posicao_y):
@@ -192,280 +192,297 @@ class Interface:
 			face = figura["faces"][f]
 			vertices = [figura["vertices"][v] for v in face]
 			return escalonamento(vertices, x, y)
+
+
+	def botoes(self):
+		#respostas
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 3)
+		self.resposta_a_window = self.cv.create_window(50, 320, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 3)
+		self.resposta_b_window = self.cv.create_window(135, 320, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 3)
+		self.resposta_c_window = self.cv.create_window(215, 320, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 3)
+		self.resposta_d_window = self.cv.create_window(300, 320, window=self.resposta_d)
 	
 	
 	def primeira_pergunta(self):
-		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 1:")
+		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 1:")
 
 		#linha 01
-		self.plotar_figura(self.triangulo,50,50)
+		self.plotar_figura(self.triangulo,30,50)
 
-		self.plotar_figura(self.reta, 130,55)
-		self.reta_90 = self.rotacionar(self.reta, 90)
-		self.draw(translacao(self.reta_90,115,70))
+		self.plotar_figura(self.reta, 120,55)
+		reta_90 = self.rotacionar(self.reta, 90)
+		self.draw(translacao(reta_90,105,70))
 
-		self.plotar_figura(self.quadrado,180,50)
+		self.plotar_figura(self.quadrado,170,50)
 
-		self.draw(translacao(self.reta_90,250,65))
-		self.draw(translacao(self.reta_90,250,75))
+		self.draw(translacao(reta_90,235,65))
+		self.draw(translacao(reta_90,235,75))
 
-		self.plotar_figura(self.heptagono,330,50)
+		self.plotar_figura(self.heptagono,305,50)
 
 		#linha 02
-		self.plotar_figura(self.hexagono, 80,120)
+		self.plotar_figura(self.hexagono, 60,120)
 
-		self.draw(translacao(self.reta_90, 115, 135))
+		self.draw(translacao(reta_90, 105, 135))
 
-		self.plotar_figura(self.triangulo, 180, 110)
+		self.plotar_figura(self.triangulo, 170, 110)
 
-		self.draw(translacao(self.reta_90,250,130))
-		self.draw(translacao(self.reta_90,250,140))
+		self.draw(translacao(reta_90,235,130))
+		self.draw(translacao(reta_90,235,140))
 
-		self.plotar_figura(self.triangulo, 310, 110)
+		self.plotar_figura(self.triangulo, 285, 110)
 
 		# #linha 03
-		self.plotar_figura(self.octogono, 80,180)
+		self.plotar_figura(self.octogono, 60,180)
 
-		self.draw(translacao(self.reta_90,115,200))
+		self.draw(translacao(reta_90,105,200))
 
-		self.plotar_figura(self.triangulo, 180, 170)
+		self.plotar_figura(self.triangulo, 170, 170)
 
-		self.draw(translacao(self.reta_90,250,190))
-		self.draw(translacao(self.reta_90,250,200))
+		self.draw(translacao(reta_90,235,190))
+		self.draw(translacao(reta_90,235,200))
 
-		self.cv.create_text(330,190,fill="black",font="Times 30", text="?")
+		self.cv.create_text(305,190,fill="black",font="Times 30", text="?")
 
-		#respostas
-		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
-		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
+		# respostas
+		# a
+		a = [self.triangulo["vertices"][v] for v in self.triangulo["faces"]["f1"]]
+		a = translacao(a, 30, 260)
+		self.draw(a, "blue")
 
-		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
-		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
+		# b
+		b = [self.quadrado["vertices"][v] for v in self.quadrado["faces"]["f1"]]
+		b = translacao(b, 115, 260)
+		self.draw(b, "blue")
 
-		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
-		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
+		# c
+		c = [self.pentagono["vertices"][v] for v in self.pentagono["faces"]["f1"]]
+		c = translacao(escalonamento(c, 1.1, 1.1), 215, 260)
+		self.draw(c, "blue")
 
-		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
-		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
+		# d
+		d = [self.hexagono["vertices"][v] for v in self.hexagono["faces"]["f1"]]
+		d = translacao(escalonamento(d, 1.15, 1.15), 312, 260)
+		self.draw(d, "blue")
+
+		self.botoes()
 
 		self.cv.pack(side="top", fill="both", expand=True)
 
-	#fazer
-	def segunda_pergunta(self):
-		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 2:")
 
-		self.reta_90 = self.rotacionar(self.reta, 90)
+	def segunda_pergunta(self):
+		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 2:")
+
+		reta_90 = self.rotacionar(self.reta, 90)
 
 		#linha 01
-		self.retangulo = translacao(self.escalonar(self.quadrado, 1.6, 1), 30, 55)
-		self.draw(self.retangulo)
+		retangulo = translacao(self.escalonar(self.quadrado, 1.6, 1), 30, 55)
+		self.draw(retangulo)
 
 		self.plotar_figura(self.reta, 125,53)
-		self.chapeu = translacao(escalonamento(self.rotacionar(self.triangulo, 180), 0.5,0.5), 135, 87)
-		self.cv.create_line([(x,y) for x, y, _ in self.chapeu])
+		chapeu = translacao(escalonamento(self.rotacionar(self.triangulo, 180), 0.5,0.5), 135, 87)
+		self.cv.create_line([(x,y) for x, y, _ in chapeu])
 
 		self.plotar_figura(self.triangulo, 165, 50)
 
-		self.draw(translacao(self.reta_90,235,68))
-		self.draw(translacao(self.reta_90,235,78))
+		self.draw(translacao(reta_90,235,68))
+		self.draw(translacao(reta_90,235,78))
 
 		self.plotar_figura(self.casa, 288, 68)
 
-		#minha casa, nao tocar
-		# self.retangulo = translacao(self.escalonar(self.quadrado, 1, 0.6), 285, 65)
-		# self.cv.create_line(self.retangulo+self.retangulo[0])
-		# self.triangulo = translacao(self.escalonar(self.triangulo, 1, 0.6), 285, 40)
-		# self.cv.create_line(self.triangulo+self.triangulo[0])
-
 		#linha 02
-		self.triangulo_30 = translacao(self.rotacionar(self.triangulo, 30), 25, 120)
-		self.draw(self.triangulo_30)
+		triangulo_30 = translacao(self.rotacionar(self.triangulo, 30), 25, 120)
+		self.draw(triangulo_30)
 
-		self.draw(translacao(self.reta_90,105,135))
-		self.chapeu = translacao(escalonamento(self.rotacionar(self.triangulo, 270), 0.5,0.5), 137, 125)
-		self.cv.create_line([(x,y) for x, y, _ in self.chapeu])
+		self.draw(translacao(reta_90,105,135))
+		chapeu = translacao(escalonamento(self.rotacionar(self.triangulo, 270), 0.5,0.5), 137, 125)
+		self.cv.create_line([(x,y) for x, y, _ in chapeu])
 
-		self.retangulo = translacao(self.escalonar(self.quadrado, 1.6, 1), 150, 115)
-		self.draw(self.retangulo)
+		retangulo = translacao(self.escalonar(self.quadrado, 1.6, 1), 150, 115)
+		self.draw(retangulo)
 
-		self.draw(translacao(self.reta_90,235,128))
-		self.draw(translacao(self.reta_90,235,138))	
+		self.draw(translacao(reta_90,235,128))
+		self.draw(translacao(reta_90,235,138))	
 
 		self.plotar_figura(self.seta, 287, 125)
 
 		#linha 03
-		self.triangulo_330 = translacao(self.rotacionar(self.triangulo, 330), 60, 160)
-		self.draw(self.triangulo_330)
+		triangulo_330 = translacao(self.rotacionar(self.triangulo, 330), 60, 160)
+		self.draw(triangulo_330)
 
-		self.draw(translacao(self.reta_90,105,195))
-		self.chapeu = translacao(escalonamento(self.rotacionar(self.triangulo, 90), 0.5,0.5), 103, 205)
-		self.cv.create_line([(x,y) for x, y, _ in self.chapeu])
+		self.draw(translacao(reta_90,105,195))
+		chapeu = translacao(escalonamento(self.rotacionar(self.triangulo, 90), 0.5,0.5), 103, 205)
+		self.cv.create_line([(x,y) for x, y, _ in chapeu])
 
-		self.triangulo_30 = translacao(self.rotacionar(self.triangulo, 30), 155, 180)
-		self.draw(self.triangulo_30)
+		triangulo_30 = translacao(self.rotacionar(self.triangulo, 30), 155, 180)
+		self.draw(triangulo_30)
 
-		self.draw(translacao(self.reta_90,235,188))
-		self.draw(translacao(self.reta_90,235,198))
+		self.draw(translacao(reta_90,235,188))
+		self.draw(translacao(reta_90,235,198))
 
 		self.cv.create_text(305,195,fill="black",font="Times 30", text="?")
 
-		# losango
-		# self.losango = translacao(self.rotacionar(self.quadrado, 45), 90, 150)
-		# self.cv.create_line(self.losango+self.losango[0])		
+		# alternativas
 
-		#respostas
-		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
-		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
+		# a
+		a = [self.seta["vertices"][v] for v in self.seta["faces"]["f1"]]
+		a = reflexao_eixo(a, "y")
+		a = translacao(a, 70, 265)
+		self.draw(a, "blue")
 
-		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
-		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
+		# b
+		retangulo = translacao(self.escalonar(self.quadrado, 1, 0.6), 115, 275)
+		triangulo = translacao(self.escalonar(self.triangulo, 1, 0.6), 115, 251)
+		self.draw(retangulo, "blue")
+		self.draw(triangulo, "blue")
 
-		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
-		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
+		# c
+		c = translacao(escalonamento(self.rotacionar(self.quadrado, 45), 0.8, 0.8), 193, 275) # c
+		self.draw(c, "blue")
 
-		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
-		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
+		#d
+		d = [self.casa["vertices"][v] for v in self.casa["faces"]["f1"]]
+		d = reflexao_eixo(d, "x")
+		d = translacao(d, 280, 280)
+		self.draw(d, "blue")
+
+		self.botoes()
+
 		self.cv.pack(side="top", fill="both", expand=True)
 
 
 	def terceira_pergunta(self):
-		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 3:")
+		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 3:")
 		
 		#linha 01
-		self.nave_90 = translacao(self.rotacionar(self.nave, 90), 50, 90)
-		self.draw(self.nave_90)
+		nave_90 = translacao(self.rotacionar(self.nave, 90), 65, 90)
+		self.draw(nave_90)
 
-		self.nave_45 = translacao(self.rotacionar(self.nave, 45), 120, 70)
-		self.draw(self.nave_45)
+		nave_45 = translacao(self.rotacionar(self.nave, 45), 150, 60)
+		self.draw(nave_45)
 
-		self.plotar_figura(self.nave, 200, 50)
+		self.plotar_figura(self.nave, 250, 50)
 
 		#linha 02
-		self.nave_180 = translacao(self.rotacionar(self.nave, 180), 90, 150)
-		self.draw(self.nave_180)
+		nave_180 = translacao(self.rotacionar(self.nave, 180), 105, 150)
+		self.draw(nave_180)
 		
-		self.nave_135 = translacao(self.rotacionar(self.nave, 135), 140, 155)
-		self.draw(self.nave_135)
+		nave_135 = translacao(self.rotacionar(self.nave, 135), 170, 150)
+		self.draw(nave_135)
 		
-		self.nave_90 = translacao(self.rotacionar(self.nave, 90), 200, 150)
-		self.draw(self.nave_90)
+		nave_90 = translacao(self.rotacionar(self.nave, 90), 250, 150)
+		self.draw(nave_90)
 		
 		#linha 03
-		self.nave_270 = translacao(self.rotacionar(self.nave, 270), 94, 180)
-		self.draw(self.nave_270)
+		nave_270 = translacao(self.rotacionar(self.nave, 270), 105, 170)
+		self.draw(nave_270)
 		
-		self.nave_225 = translacao(self.rotacionar(self.nave, 225), 170, 206)
-		self.draw(self.nave_225)
+		nave_225 = translacao(self.rotacionar(self.nave, 225), 200, 195)
+		self.draw(nave_225)
 
-		self.cv.create_text(220,190,fill="black",font="Times 30", text="?")
+		self.cv.create_text(270,190,fill="black",font="Times 30", text="?")
 
 		#respostas
-		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
-		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
+		# a
+		a = translacao(nave_135, -120, 150)
+		self.draw(a, "blue")
 
-		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
-		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
+		# b
+		b = [self.nave["vertices"][v] for v in self.nave["faces"]["f1"]]
+		b = translacao(b, 115, 260)
+		self.draw(b, "blue")
 
-		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
-		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
+		# c
+		c = translacao(nave_270, 130, 90)
+		self.draw(c, "blue")
 
-		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
-		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
+		# d
+		d = translacao(nave_180, 215, 150)
+		self.draw(d, "blue")
+
+
+		self.botoes()
+
 		self.cv.pack(side="top", fill="both", expand=True)
 
 
 	def quarta_pergunta(self):
-		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 4:")
+		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 4:")
 		
 		#quadrados da tela
 		#linha 01
-		self.plotar_figura(self.quadrado, 50, 50)
-		self.plotar_figura(self.quadrado, 130, 50)
-		self.plotar_figura(self.quadrado, 210, 50)
+		self.plotar_figura(self.quadrado, 75, 50)
+		self.plotar_figura(self.quadrado, 155, 50)
+		self.plotar_figura(self.quadrado, 235, 50)
 
 		#linha 02
-		self.plotar_figura(self.quadrado, 50, 120)
-		self.plotar_figura(self.quadrado, 130, 120)
-		self.plotar_figura(self.quadrado, 210, 120)
+		self.plotar_figura(self.quadrado, 75, 110)
+		self.plotar_figura(self.quadrado, 155, 110)
+		self.plotar_figura(self.quadrado, 235, 110)
 
 		#linha 03 ---------------mudar a gambiarra do quadrado------------------
-		self.q_vermelho = translacao(self.escalonar(self.quadrado,1,1),50,190)
-		self.cv.create_line([(x,y) for x, y, _ in self.q_vermelho+[self.q_vermelho[0]]], fill='red')
-		self.plotar_figura(self.quadrado, 130, 190)
+		q_vermelho = translacao(self.escalonar(self.quadrado,1,1),75,170)
+		self.draw(q_vermelho, "red")
+		self.plotar_figura(self.quadrado, 155, 170)
 
 		#figuras no interior
+		retangulo_v = self.escalonar(self.quadrado, 0.5, 1)
+		retangulo_h = self.escalonar(self.quadrado, 1, 0.5)
+		quadradinho = self.escalonar(self.quadrado, 0.5, 0.5)
 		#linha 01
-		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 1), 70, 50)
-		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
-
-		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 0.5), 150, 50)
-		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
-
-		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 0.5), 230, 70)
-		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
+		self.draw(translacao(retangulo_v, 95, 50), "red")
+		self.draw(translacao(quadradinho, 175, 50), "red")
+		self.draw(translacao(quadradinho, 255, 70), "red")
 
 		#linha 02
-		self.quadradinho = translacao(self.escalonar(self.quadrado, 1, 0.5), 50, 120)
-		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
-
-		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 0.5), 130, 140)
-		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
-
-		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 0.5), 230, 140)
-		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
+		self.draw(translacao(retangulo_h, 75, 130), "red")
+		self.draw(translacao(quadradinho, 155, 130), "red")
+		self.draw(translacao(quadradinho, 255, 130), "red")
 
 		#linha 03
 		#quadrado preenchido ao desenhar
-		self.triangulo = translacao(self.rotacionar(self.triangulo_ret, 270), 170, 190)
-		self.cv.create_line([(x,y) for x, y, _ in self.triangulo+[self.triangulo[0]]], fill='red')
+		triangulo = translacao(self.rotacionar(self.triangulo_ret, 270), 195, 170)
+		self.draw(triangulo, "red")
 		
-		self.cv.create_text(230,210,fill="black",font="Times 30", text="?")
+		self.cv.create_text(255,190,fill="black",font="Times 30", text="?")
 
-		#respostas
-		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
-		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
+		# respostas
+		self.plotar_figura(self.quadrado, 30, 255)
+		self.plotar_figura(self.quadrado, 115, 255)
+		self.plotar_figura(self.quadrado, 195, 255)
+		self.plotar_figura(self.quadrado, 280, 255)
 
-		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
-		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
+		self.botoes()
 
-		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
-		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
-
-		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
-		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
 		self.cv.pack(side="top", fill="both", expand=True)
 
 	
 	def quinta_pergunta(self):
-		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 5:")
+		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 5:")
 		
 		#linha 01
-		self.plotar_figura(self.estrela,50,70)
-		self.plotar_figura(self.seta,130,65)
-		self.plotar_figura(self.casa,200,70)
+		self.plotar_figura(self.estrela,75,66)
+		self.plotar_figura(self.seta,155,60)
+		self.plotar_figura(self.casa,225,70)
 
 		#linha 02
-		self.plotar_figura(self.casa,50,130)
-		self.plotar_figura(self.estrela,130,130)
-		self.plotar_figura(self.seta,200,130)
+		self.plotar_figura(self.casa,75,130)
+		self.plotar_figura(self.estrela,155,126)
+		self.plotar_figura(self.seta,225,120)
 
 		#linha 03
-		self.plotar_figura(self.seta,50,190)
-		self.plotar_figura(self.casa,130,190)
-		self.cv.create_text(220,190,fill="black",font="Times 30", text="?")
+		self.plotar_figura(self.seta,75,180)
+		self.plotar_figura(self.casa,155,190)
+		self.cv.create_text(245,190,fill="black",font="Times 30", text="?")
 
 		#respostas
-		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
-		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
-
-		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
-		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
-
-		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
-		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
-
-		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
-		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
+		self.botoes()
 
 
 		self.cv.pack(side="top", fill="both", expand=True)

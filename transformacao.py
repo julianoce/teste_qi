@@ -1,4 +1,3 @@
-import tkinter as tk
 import numpy as np
 import math
 
@@ -40,9 +39,9 @@ def rotacao(coordenadas, rad):
 
 def reflexao_eixo(coordenadas, eixo):
 	if eixo == 'x':
-		return escalonar(face, m=-1)
+		return escalonamento(coordenadas, n=-1)
 	
-	return escalonar(face, n=-1)
+	return escalonamento(coordenadas, m=-1)
 
 
 def reflexao_reta(coordenadas):
