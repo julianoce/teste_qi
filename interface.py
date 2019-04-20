@@ -1,4 +1,4 @@
-import Tkinter as tk
+import tkinter as tk
 from transformacao import *
 
 class Interface:
@@ -458,6 +458,23 @@ class Interface:
 		self.plotar_figura(self.quadrado, 195, 255)
 		self.plotar_figura(self.quadrado, 280, 255)
 
+		#a
+		a = self.escalonar(self.hexagono,1,0.6)
+		a = translacao(a, 60, 275)
+		self.draw(a, "blue")
+
+		#b
+		self.draw(translacao(retangulo_v, 115, 255), "blue")
+
+		#c - resposta certa
+		triangulo = translacao(self.rotacionar(self.triangulo_ret, 90), 195, 295)
+		self.draw(triangulo, "blue")
+
+		#d
+		d = self.escalonar(self.octogono,0.5,0.5)
+		d = rotacao(d,30)
+		d = translacao(d, 309, 255)
+		self.draw(d, "blue")
 		self.botoes()
 
 		self.cv.pack(side="top", fill="both", expand=True)
@@ -482,6 +499,34 @@ class Interface:
 		self.cv.create_text(245,190,fill="black",font="Times 30", text="?")
 
 		#respostas
+		#a
+		a = [self.estrela["vertices"][v] for v in self.estrela["faces"]["f1"]]
+		a = reflexao_eixo(a, "x")
+		a = translacao(a, 30, 290)
+		self.draw(a, "blue")
+
+		#b
+		b = [self.estrela["vertices"][v] for v in self.estrela["faces"]["f1"]]
+		b = translacao(b, 115, 280)
+		self.draw(b, "blue")
+
+		#c
+		d = [self.seta["vertices"][v] for v in self.seta["faces"]["f1"]]
+		d = translacao(d, 195, 272)
+		self.draw(d, "blue")
+
+		#d
+		d = [self.casa["vertices"][v] for v in self.casa["faces"]["f1"]]
+		d = reflexao_eixo(d, "x")
+		d = translacao(d, 278, 280)
+		self.draw(d, "blue")
+
+		d = [self.seta["vertices"][v] for v in self.seta["faces"]["f1"]]
+		d = escalonamento(rotacao(d,90), 0.7,0.7)
+		d = translacao(d, 291, 290)
+		self.draw(d, "blue")
+
+
 		self.botoes()
 
 

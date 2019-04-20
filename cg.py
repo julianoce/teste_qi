@@ -1,4 +1,4 @@
-import Tkinter as tk
+import tkinter as tk
 from interface import Interface
 
 
@@ -9,7 +9,7 @@ main = Interface(root)
 # main.primeira_pergunta()
 # main.segunda_pergunta()
 # main.terceira_pergunta()
-# main.quarta_pergunta()
-main.quinta_pergunta()
+main.quarta_pergunta()
+# main.quinta_pergunta()
 
 root.mainloop()
