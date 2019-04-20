@@ -208,8 +208,22 @@ class Interface:
 		self.resposta_d = tk.Button(self.cv, text = 'D', width = 3)
 		self.resposta_d_window = self.cv.create_window(300, 320, window=self.resposta_d)
 	
+	def fechar_janela(self):
+		self.root.destroy()
+
+	def tela_inicial(self):
+		self.cv.create_text(120,30,fill="blue",font="Times 30", text="Teste De QI")
+		self.comecar = tk.Button(self.cv, text = 'Começar', width = 7, command=self.primeira_pergunta)
+		self.comecar_window = self.cv.create_window(70, 100, window=self.comecar)
+		self.fechar = tk.Button(self.cv, text = 'Fechar', width = 7, command=self.fechar_janela)
+		self.fechar_window = self.cv.create_window(150, 100, window=self.fechar)
+		
+		self.cv.pack(side="top", fill="both", expand=True)
+
+		
 	
 	def primeira_pergunta(self):
+		self.cv.delete("all")
 		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 1:")
 
 		#linha 01
@@ -277,6 +291,7 @@ class Interface:
 
 
 	def segunda_pergunta(self):
+		self.cv.delete("all")
 		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 2:")
 
 		reta_90 = self.rotacionar(self.reta, 90)
@@ -358,6 +373,7 @@ class Interface:
 
 
 	def terceira_pergunta(self):
+		self.cv.delete("all")
 		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 3:")
 		
 		#linha 01
@@ -413,6 +429,7 @@ class Interface:
 
 
 	def quarta_pergunta(self):
+		self.cv.delete("all")
 		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 4:")
 		
 		#quadrados da tela
@@ -481,6 +498,7 @@ class Interface:
 
 	
 	def quinta_pergunta(self):
+		self.cv.delete("all")
 		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 5:")
 		
 		#linha 01
