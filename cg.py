@@ -304,6 +304,40 @@ class Interface:
 		self.cv.pack(side="top", fill="both", expand=True)
 
 
+	def quarta_pergunta(self):
+		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 4:")
+		
+		#quadrados da tela
+		#linha 01
+		self.plotar_figura(quadrado, 50, 50)
+		self.plotar_figura(quadrado, 130, 50)
+		self.plotar_figura(quadrado, 210, 50)
+
+		#linha 02
+		self.plotar_figura(quadrado, 50, 120)
+		self.plotar_figura(quadrado, 130, 120)
+		self.plotar_figura(quadrado, 210, 120)
+
+		#linha 03
+		self.plotar_figura(quadrado, 50, 190)
+		self.plotar_figura(quadrado, 130, 190)
+		self.plotar_figura(quadrado, 210, 190)
+
+
+
+		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
+		self.resposta_a_window = self.cv.create_window(60, 300, window=self.resposta_a)
+
+		self.resposta_b = tk.Button(self.cv, text = 'B', width = 5)
+		self.resposta_b_window = self.cv.create_window(200, 300, window=self.resposta_b)
+
+		self.resposta_c = tk.Button(self.cv, text = 'C', width = 5)
+		self.resposta_c_window = self.cv.create_window(60, 350, window=self.resposta_c)
+
+		self.resposta_d = tk.Button(self.cv, text = 'D', width = 5)
+		self.resposta_d_window = self.cv.create_window(200, 350, window=self.resposta_d)
+		self.cv.pack(side="top", fill="both", expand=True)
+
 	
 	def quinta_pergunta(self):
 		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 5:")
@@ -338,6 +372,6 @@ if __name__ == "__main__":
     root = tk.Tk()
     main = Interface(root)
 
-main.terceira_pergunta()
+main.quarta_pergunta()
 
 root.mainloop()
