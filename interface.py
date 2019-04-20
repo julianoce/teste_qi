@@ -1,4 +1,4 @@
-import Tkinter as tk
+import tkinter as tk
 from transformacao import *
 
 class Interface:
@@ -262,7 +262,7 @@ class Interface:
 
 		self.plotar_figura(self.reta, 125,53)
 		self.chapeu = translacao(escalonamento(self.rotacionar(self.triangulo, 180), 0.5,0.5), 135, 87)
-		self.draw(self.chapeu)
+		self.cv.create_line([(x,y) for x, y, _ in self.chapeu])
 
 		self.plotar_figura(self.triangulo, 165, 50)
 
@@ -283,7 +283,7 @@ class Interface:
 
 		self.draw(translacao(self.reta_90,105,135))
 		self.chapeu = translacao(escalonamento(self.rotacionar(self.triangulo, 270), 0.5,0.5), 137, 125)
-		self.draw(self.chapeu)
+		self.cv.create_line([(x,y) for x, y, _ in self.chapeu])
 
 		self.retangulo = translacao(self.escalonar(self.quadrado, 1.6, 1), 150, 115)
 		self.draw(self.retangulo)
@@ -299,7 +299,7 @@ class Interface:
 
 		self.draw(translacao(self.reta_90,105,195))
 		self.chapeu = translacao(escalonamento(self.rotacionar(self.triangulo, 90), 0.5,0.5), 103, 205)
-		self.draw(self.chapeu)
+		self.cv.create_line([(x,y) for x, y, _ in self.chapeu])
 
 		self.triangulo_30 = translacao(self.rotacionar(self.triangulo, 30), 155, 180)
 		self.draw(self.triangulo_30)
