@@ -33,7 +33,7 @@ def rotacao(coordenadas, rad):
 				   [               0,                 0, 1] ])
 	r = []
 	for c in coordenadas:
-		r.append(list(np.matmul(M, np.array(c))))
+		r.append(list(np.matmul(np.array(c), M)))
 
 	return r
 

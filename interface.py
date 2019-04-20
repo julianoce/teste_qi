@@ -202,36 +202,36 @@ class Interface:
 
 		self.plotar_figura(self.reta, 130,55)
 		self.reta_90 = self.rotacionar(self.reta, 90)
-		self.draw(translacao(self.reta_90,145,70))
+		self.draw(translacao(self.reta_90,115,70))
 
 		self.plotar_figura(self.quadrado,180,50)
 
-		self.draw(translacao(self.reta_90,280,65))
-		self.draw(translacao(self.reta_90,280,75))
+		self.draw(translacao(self.reta_90,250,65))
+		self.draw(translacao(self.reta_90,250,75))
 
 		self.plotar_figura(self.heptagono,330,50)
 
 		#linha 02
 		self.plotar_figura(self.hexagono, 80,120)
 
-		self.draw(translacao(self.reta_90, 145, 135))
+		self.draw(translacao(self.reta_90, 115, 135))
 
 		self.plotar_figura(self.triangulo, 180, 110)
 
-		self.draw(translacao(self.reta_90,280,130))
-		self.draw(translacao(self.reta_90,280,140))
+		self.draw(translacao(self.reta_90,250,130))
+		self.draw(translacao(self.reta_90,250,140))
 
 		self.plotar_figura(self.triangulo, 310, 110)
 
 		# #linha 03
 		self.plotar_figura(self.octogono, 80,180)
 
-		self.draw(translacao(self.reta_90,145,200))
+		self.draw(translacao(self.reta_90,115,200))
 
 		self.plotar_figura(self.triangulo, 180, 170)
 
-		self.draw(translacao(self.reta_90,280,190))
-		self.draw(translacao(self.reta_90,280,200))
+		self.draw(translacao(self.reta_90,250,190))
+		self.draw(translacao(self.reta_90,250,200))
 
 		self.cv.create_text(330,190,fill="black",font="Times 30", text="?")
 
