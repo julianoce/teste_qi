@@ -395,28 +395,29 @@ class Interface:
 		#figuras no interior
 		#linha 01
 		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 1), 70, 50)
-		self.draw(self.quadradinho)
+		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
 
 		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 0.5), 150, 50)
-		self.draw(self.quadradinho)
+		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
 
 		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 0.5), 230, 70)
-		self.draw(self.quadradinho)
+		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
 
 		#linha 02
 		self.quadradinho = translacao(self.escalonar(self.quadrado, 1, 0.5), 50, 120)
-		self.draw(self.quadradinho)
+		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
 
 		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 0.5), 130, 140)
-		self.draw(self.quadradinho)
+		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
 
 		self.quadradinho = translacao(self.escalonar(self.quadrado, 0.5, 0.5), 230, 140)
-		self.draw(self.quadradinho)
+		self.cv.create_line([(x,y) for x, y, _ in self.quadradinho+[self.quadradinho[0]]], fill='red')
 
 		#linha 03
 		#quadrado preenchido ao desenhar
 		self.triangulo = translacao(self.rotacionar(self.triangulo_ret, 270), 170, 190)
-		self.draw(self.triangulo)
+		self.cv.create_line([(x,y) for x, y, _ in self.triangulo+[self.triangulo[0]]], fill='red')
+		
 		self.cv.create_text(230,210,fill="black",font="Times 30", text="?")
 
 		#respostas
