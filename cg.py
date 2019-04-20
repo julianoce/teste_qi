@@ -264,6 +264,64 @@ class Interface:
 	def segunda_pergunta(self):
 		self.cv.create_text(100,20,fill="black",font="Times 15", text="Pergunta 2:")
 
+		self.reta_90 = self.rotacionar(reta, 90)
+
+		#linha 01
+		self.retangulo = translacao(self.escalonar(quadrado, 1.6, 1), 30, 55)
+		self.cv.create_line(self.retangulo+self.retangulo[0])
+
+		self.plotar_figura(reta, 125,53)
+		self.chapeu = translacao(escalonamento(self.rotacionar(triangulo, 180), 0.5,0.5), 135, 87)
+		self.cv.create_line(self.chapeu)
+
+		self.plotar_figura(triangulo, 165, 50)
+
+		self.cv.create_line(translacao(self.reta_90,235,68))
+		self.cv.create_line(translacao(self.reta_90,235,78))
+
+		self.plotar_figura(casa, 288, 68)
+
+		#minha casa, não tocar
+		# self.retangulo = translacao(self.escalonar(quadrado, 1, 0.6), 285, 65)
+		# self.cv.create_line(self.retangulo+self.retangulo[0])
+		# self.triangulo = translacao(self.escalonar(triangulo, 1, 0.6), 285, 40)
+		# self.cv.create_line(self.triangulo+self.triangulo[0])
+
+		#linha 02
+		self.triangulo_30 = translacao(self.rotacionar(triangulo, 30), 25, 120)
+		self.cv.create_line(self.triangulo_30+self.triangulo_30[0])
+
+		self.cv.create_line(translacao(self.reta_90,105,135))
+		self.chapeu = translacao(escalonamento(self.rotacionar(triangulo, 270), 0.5,0.5), 137, 125)
+		self.cv.create_line(self.chapeu)
+
+		self.retangulo = translacao(self.escalonar(quadrado, 1.6, 1), 150, 115)
+		self.cv.create_line(self.retangulo+self.retangulo[0])
+
+		self.cv.create_line(translacao(self.reta_90,235,128))
+		self.cv.create_line(translacao(self.reta_90,235,138))	
+
+		self.plotar_figura(seta, 287, 125)
+
+		#linha 03
+		self.triangulo_330 = translacao(self.rotacionar(triangulo, 330), 60, 160)
+		self.cv.create_line(self.triangulo_330+self.triangulo_330[0])
+
+		self.cv.create_line(translacao(self.reta_90,105,195))
+		self.chapeu = translacao(escalonamento(self.rotacionar(triangulo, 90), 0.5,0.5), 103, 205)
+		self.cv.create_line(self.chapeu)
+
+		self.triangulo_30 = translacao(self.rotacionar(triangulo, 30), 155, 180)
+		self.cv.create_line(self.triangulo_30+self.triangulo_30[0])
+
+		self.cv.create_line(translacao(self.reta_90,235,188))
+		self.cv.create_line(translacao(self.reta_90,235,198))
+
+		self.cv.create_text(305,195,fill="black",font="Times 30", text="?")
+
+		#losango
+		# self.losango = translacao(self.rotacionar(quadrado, 45), 90, 150)
+		# self.cv.create_line(self.losango+self.losango[0])		
 
 		#respostas
 		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
@@ -399,9 +457,9 @@ class Interface:
 		self.plotar_figura(seta,200,130)
 
 		#linha 03
-		self.plotar_figura(seta,50,190)
+		self.plotar_figura(seta,50,185)
 		self.plotar_figura(casa,130,190)
-		self.cv.create_text(220,190,fill="black",font="Times 30", text="?")
+		self.cv.create_text(220,195,fill="black",font="Times 30", text="?")
 
 		#respostas
 		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
@@ -423,6 +481,6 @@ if __name__ == "__main__":
     root = tk.Tk()
     main = Interface(root)
 
-main.quarta_pergunta()
+main.quinta_pergunta()
 
 root.mainloop()
