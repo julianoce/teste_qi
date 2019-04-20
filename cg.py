@@ -14,7 +14,7 @@ def translacao(coordenadas, xt=0, yt=0):
 	return [[x+xt, y+yt] for x, y in coordenadas]
 
 
-def escalonar(coordenadas, xt=1, yt=1):
+def escalonamento(coordenadas, xt=1, yt=1):
 	M = np.array([[xt, 0],[0, yt]])
 	return [list(l) for l in np.matmul(np.array(coordenadas), M)]
 
@@ -196,6 +196,12 @@ class Interface:
 			face = figura["faces"][f]
 			vertices = [figura["vertices"][v] for v in face]
 			return rotacao(vertices, angulo)
+
+	def escalonar(self, figura, x, y):
+		for f in figura["faces"]:
+			face = figura["faces"][f]
+			vertices = [figura["vertices"][v] for v in face]
+			return escalonamento(vertices, x, y)
 	
 	
 	def primeira_pergunta(self):
@@ -321,8 +327,32 @@ class Interface:
 		#linha 03
 		self.plotar_figura(quadrado, 50, 190)
 		self.plotar_figura(quadrado, 130, 190)
-		self.plotar_figura(quadrado, 210, 190)
 
+		#figuras no interior
+		#linha 01
+		self.quadradinho = translacao(self.escalonar(quadrado, 0.5, 1), 70, 50)
+		self.cv.create_line(self.quadradinho+self.quadradinho[0])
+
+		self.quadradinho = translacao(self.escalonar(quadrado, 0.5, 0.5), 150, 50)
+		self.cv.create_line(self.quadradinho+self.quadradinho[0])
+
+		self.quadradinho = translacao(self.escalonar(quadrado, 0.5, 0.5), 230, 70)
+		self.cv.create_line(self.quadradinho+self.quadradinho[0])
+
+		#linha 02
+		self.quadradinho = translacao(self.escalonar(quadrado, 1, 0.5), 50, 120)
+		self.cv.create_line(self.quadradinho+self.quadradinho[0])
+
+		self.quadradinho = translacao(self.escalonar(quadrado, 0.5, 0.5), 130, 140)
+		self.cv.create_line(self.quadradinho+self.quadradinho[0])
+
+		self.quadradinho = translacao(self.escalonar(quadrado, 0.5, 0.5), 230, 140)
+		self.cv.create_line(self.quadradinho+self.quadradinho[0])
+
+		#linha 03
+		#quadrado preenchido ao desenhar
+
+		self.cv.create_text(230,210,fill="black",font="Times 30", text="?")
 
 
 		self.resposta_a = tk.Button(self.cv, text = 'A', width = 5)
