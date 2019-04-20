@@ -388,8 +388,9 @@ class Interface:
 		self.plotar_figura(self.quadrado, 130, 120)
 		self.plotar_figura(self.quadrado, 210, 120)
 
-		#linha 03
-		self.plotar_figura(self.quadrado, 50, 190)
+		#linha 03 ---------------mudar a gambiarra do quadrado------------------
+		self.q_vermelho = translacao(self.escalonar(self.quadrado,1,1),50,190)
+		self.cv.create_line([(x,y) for x, y, _ in self.q_vermelho+[self.q_vermelho[0]]], fill='red')
 		self.plotar_figura(self.quadrado, 130, 190)
 
 		#figuras no interior
