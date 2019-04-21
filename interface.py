@@ -253,8 +253,8 @@ class Interface:
 
 		# respostas
 		# a
-		a = [self.triangulo["vertices"][v] for v in self.triangulo["faces"]["f1"]]
-		a = translacao(a, 30, 260)
+		a = [self.heptagono["vertices"][v] for v in self.heptagono["faces"]["f1"]]
+		a = translacao(escalonamento(escalonamento(a, 0.6, 1), 1.2,1.2), 50, 255)
 		self.draw(a, "blue")
 
 		# b
@@ -269,7 +269,7 @@ class Interface:
 
 		# d
 		d = [self.hexagono["vertices"][v] for v in self.hexagono["faces"]["f1"]]
-		d = translacao(escalonamento(d, 1.15, 1.15), 312, 260)
+		d = translacao(rotacao(escalonamento(d, 1.15, 1.15), 90), 280, 268)
 		self.draw(d, "blue")
 
 		self.resposta_a = tk.Button(self.cv, text = 'A', width = 3, command = self.segunda_pergunta)
