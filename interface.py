@@ -1,5 +1,6 @@
 import tkinter as tk
 from transformacao import *
+import time
 
 class Interface:
 	def __init__(self, master):
@@ -7,6 +8,7 @@ class Interface:
 		self.root.wm_title('Teste de QI')
 		self.pontuacao = 0
 		self.cv = tk.Canvas(self.root,height="350",width="350",bg="white")
+		
 
 		self.reta = {
 			"vertices": {
@@ -199,19 +201,16 @@ class Interface:
 		self.root.destroy()
 
 	def tela_inicial(self):
-		self.cv.create_text(120,30,fill="blue",font="Times 30", text="Teste De QI")
+		self.cv.create_text(170,30,fill="blue",font="Helvetica 30", text="Teste De QI")
 		self.comecar = tk.Button(self.cv, text = 'Começar', width = 7, command=self.primeira_pergunta)
-		self.comecar_window = self.cv.create_window(70, 100, window=self.comecar)
+		self.comecar_window = self.cv.create_window(100, 180, window=self.comecar)
 		self.fechar = tk.Button(self.cv, text = 'Fechar', width = 7, command=self.fechar_janela)
-		self.fechar_window = self.cv.create_window(150, 100, window=self.fechar)
-		
+		self.fechar_window = self.cv.create_window(230, 180, window=self.fechar)
 		self.cv.pack(side="top", fill="both", expand=True)
-
-
-
 	
 	def primeira_pergunta(self):
 		self.cv.delete("all")
+		self.start_time = time.time()
 		self.cv.create_text(70,20,fill="blue",font="Times 15", text="Pergunta 1:")
 
 		#linha 01
@@ -284,9 +283,7 @@ class Interface:
 
 		self.resposta_d = tk.Button(self.cv, text = 'D', width = 3, command = self.segunda_pergunta)
 		self.resposta_d_window = self.cv.create_window(300, 320, window=self.resposta_d)
-
 		self.cv.pack(side="top", fill="both", expand=True)
-
 				
 	def resposta_certa_1(self):
 		self.pontuacao += 1
@@ -616,7 +613,12 @@ class Interface:
 
 	def tela_final(self): 
 		self.cv.delete("all")
-		self.cv.create_text(150,30,fill="blue",font="Times 20", text="Você acertou "+str(self.pontuacao)+" pontos!")
+		self.final_time = time.time()
+		self.tempo_total =  self.final_time - self.start_time
+		self.cv.create_text(170,30,fill="blue",font="Helvetica 20", text="Você acertou "+str(self.pontuacao)+" pontos!")
+		self.cv.create_text(170,90,fill="red",font="Helvetica 12", text="Tempo Total: "+str(round(self.tempo_total))+" segundos")
+
+
 		self.fechar = tk.Button(self.cv, text = 'Fechar', width = 7, command=self.fechar_janela)
-		self.fechar_window = self.cv.create_window(150, 100, window=self.fechar)
+		self.fechar_window = self.cv.create_window(170, 150, window=self.fechar)
 		self.cv.pack(side="top", fill="both", expand=True)
