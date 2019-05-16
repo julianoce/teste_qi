@@ -253,8 +253,8 @@ class Interface:
 		fig = isometrica(self.casa3d())
 		self.plotar_figura(fig, 150, 100, "green4")
 		fig_r = self.rotacionar_figura_3d(isometrica(self.casa3d()), 180)
-		self.plotar_figura(self.escalonar_figura_3d(fig_r, 2, 2), 192, 290, "gray70")
-		self.plotar_figura(self.escalonar_figura_3d(fig, 2, 2), 150, 250, "blue")
+		self.plotar_figura(self.escalonar_figura_3d(fig_r, 2, 2), 152, 290, "gray70")
+		self.plotar_figura(self.escalonar_figura_3d(fig, 2, 2), 200, 250, "blue")
 
 
 

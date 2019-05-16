@@ -22,17 +22,13 @@ def isometrica(objeto):
 	coordenadas = objeto["vertices"]
 
 	c = np.array(list(coordenadas.values()))
-
-	e = []
-	for i in range(len(coordenadas)):
-		e.append(coordenadas["v{}".format(i+1)])
+	vertices = coordenadas.keys()
+	r = np.matmul(c, M).tolist()
 
 
-	r = np.matmul(e, M).tolist()
-
-
-	for i in range(len(r)):
-		objeto["vertices"]["v{}".format(i+1)] = r[i][:2]+[r[i][3]]
+	for c, v, ri in zip(c, vertices, r):
+		objeto["vertices"][v] = ri[:2]+[ri[3]]
+		
 
 	return objeto
 
