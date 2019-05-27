@@ -190,8 +190,8 @@ class Interface:
 					# 	"f2": ["v6","v10","v9","v8","v7"],
 					# 	"f3": ["v2","v7","v8","v3"],
 					# 	"f4": ["v3","v8","v9","v4"],
-					# 	"f5": ["v1","v2","v7","v6"],
-					# 	"f6": ["v4","v5","v10","v9"],
+					# 	"f5": ["v1","v6","v7","v2"],
+					# 	"f6": ["v4","v9","v5","v10"],
 					# 	"f7": ["v1","v5","v10","v6"]
 					# }
 					"faces": {
@@ -254,7 +254,6 @@ class Interface:
 		return figura			
 
 	def desenhar_faces(self,figura,faces,posicao_x,posicao_y,color="black"):
-		print(faces)
 		for f in faces:
 			face = figura["faces"][f]
 			T = translacao( [figura["vertices"][v] for v in face] , posicao_x, posicao_y)
@@ -268,7 +267,8 @@ class Interface:
 
 	def tela_inicial(self):
 		c = isometrica(self.casa3d())
-		p = back_face(c)
+		d = isometrica_z(self.casa3d())
+		p = back_face(d)
 		self.desenhar_faces(c, p, 100, 100, "blue")
 		fig = isometrica(self.casa3d())
 		self.plotar_figura(fig, 150, 100, "green4")

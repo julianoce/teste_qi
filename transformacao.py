@@ -1,5 +1,6 @@
 import numpy as np
 import math
+from math import sqrt
 
 
 def translacao(coordenadas, m=0, n=0):
@@ -25,11 +26,34 @@ def isometrica(objeto):
 	vertices = coordenadas.keys()
 	r = np.matmul(c, M).tolist()
 
-
 	for c, v, ri in zip(c, vertices, r):
 		objeto["vertices"][v] = ri[:2]+[ri[3]]
 		
 
+	return objeto
+
+def isometrica_z(objeto):
+	M = np.array([[sqrt(3/6),  1/sqrt(6), sqrt(2/6), 0],
+				  [  0,    2/sqrt(6), -sqrt(2/6), 0],
+				  [-sqrt(3/6), 1/sqrt(6), sqrt(2/6), 0],
+				  [  0,      0,   0, 1]])
+
+	# N = np.array([[1, 0, 0, 0],
+	# 			  [0, 1, 0, 0],
+	# 			  [0, 0, 0, 0],
+	# 			  [0, 0, 0, 1]])
+
+	coordenadas = objeto["vertices"]
+
+	c = np.array(list(coordenadas.values()))
+	vertices = coordenadas.keys()
+	r = np.matmul(c, M).tolist()
+
+	# h = np.matmul(r, N).tolist()
+
+	for c, v, ri in zip(c, vertices, r):
+		objeto["vertices"][v] = ri[:3]
+		
 	return objeto
 
 
@@ -75,6 +99,8 @@ def reflexao_reta(coordenadas):
 
 
 def normal(v1,v2):
+	print(v1)
+	print(v2)
 	i = ((v1[1]*v2[2]) - (v1[2]*v2[1]))
 	j = ((v1[2]*v2[0]) - (v1[0]*v2[2]))
 	k = ((v1[0]*v2[1]) - (v1[1]*v2[0]))
@@ -84,9 +110,14 @@ def back_face(objeto):
 	resp = list()
 	for f in objeto["faces"]:
 		n = normal(objeto["vertices"][objeto["faces"][f][0]],objeto["vertices"][objeto["faces"][f][1]])
-		if (n[2]<0):
+		print("face ",end="")
+		print(f)
+		print("normal ",end="")
+		print(n)
+		if (n[2]<=0):
 			resp.append(f)
-	return [row for row in resp]
+	print(resp)
+	return resp
 
 # Passo a passo:
 # - Pegar a figura 3d e fazer as rotações em a projeção
