@@ -72,3 +72,26 @@ def reflexao_reta(coordenadas):
 	for c in coordenadas:
 		r.append(list(np.matmul(M, np.array(c))))
 	return r
+
+
+def normal(v1,v2):
+	i = ((v1[1]*v2[2]) - (v1[2]*v2[1]))
+	j = ((v1[2]*v2[0]) - (v1[0]*v2[2]))
+	k = ((v1[0]*v2[1]) - (v1[1]*v2[0]))
+	return [i,j,k]
+
+def back_face(objeto):
+	resp = []
+	for f in objeto["vetores"]:
+		print(f)
+		print(objeto["vetores"][f])
+		n = normal(objeto["vetores"][f][0],objeto["vetores"][f][1])
+		if (n[2]<0):
+			resp.append(f)
+	print(resp)
+
+# Passo a passo:
+# - Pegar a figura 3d e fazer as rotações em a projeção
+# - Calcular a normal de cada face
+# - Rodar o algoritmo para ver quais faces são visiveis
+# - Desenhar as faces visiveis

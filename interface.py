@@ -193,6 +193,15 @@ class Interface:
 						"f5": ["v1","v2","v7","v6"],
 						"f6": ["v4","v5","v10","v9"],
 						"f7": ["v1","v5","v10","v6"]
+					},
+					"vetores":{
+						"f1": [[0,20,0], [20,-20,0]],
+						"f2": [[20,-20,20], [0,20,20]],
+						"f3": [[40,20,0], [0,20,20]],
+						"f4": [[40,0,0], [40,20,20]],
+						"f5": [[0,0,20], [0,20,0]],
+						"f6": [[20,-20,20], [40,0,0]],
+						"f7": [[20,-20,20], [0,0,0]]
 					}
 				}
 
@@ -250,6 +259,7 @@ class Interface:
 
 
 	def tela_inicial(self):
+		back_face(isometrica(self.casa3d()))
 		fig = isometrica(self.casa3d())
 		self.plotar_figura(fig, 150, 100, "green4")
 		fig_r = self.rotacionar_figura_3d(isometrica(self.casa3d()), 180)
