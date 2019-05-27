@@ -81,14 +81,12 @@ def normal(v1,v2):
 	return [i,j,k]
 
 def back_face(objeto):
-	resp = []
-	for f in objeto["vetores"]:
-		print(f)
-		print(objeto["vetores"][f])
-		n = normal(objeto["vetores"][f][0],objeto["vetores"][f][1])
+	resp = list()
+	for f in objeto["faces"]:
+		n = normal(objeto["vertices"][objeto["faces"][f][0]],objeto["vertices"][objeto["faces"][f][1]])
 		if (n[2]<0):
 			resp.append(f)
-	print(resp)
+	return [row for row in resp]
 
 # Passo a passo:
 # - Pegar a figura 3d e fazer as rotações em a projeção

@@ -185,6 +185,15 @@ class Interface:
 						"v10": [20, -20, 20, 1],
 
 					},
+					# "faces": {
+					# 	"f1": ["v1", "v2", "v3", "v4", "v5"],
+					# 	"f2": ["v6","v10","v9","v8","v7"],
+					# 	"f3": ["v2","v7","v8","v3"],
+					# 	"f4": ["v3","v8","v9","v4"],
+					# 	"f5": ["v1","v2","v7","v6"],
+					# 	"f6": ["v4","v5","v10","v9"],
+					# 	"f7": ["v1","v5","v10","v6"]
+					# }
 					"faces": {
 						"f1": ["v1", "v2", "v3", "v4", "v5"],
 						"f2": ["v6","v7","v8","v9","v10"],
@@ -193,15 +202,6 @@ class Interface:
 						"f5": ["v1","v2","v7","v6"],
 						"f6": ["v4","v5","v10","v9"],
 						"f7": ["v1","v5","v10","v6"]
-					},
-					"vetores":{
-						"f1": [[0,20,0], [20,-20,0]],
-						"f2": [[20,-20,20], [0,20,20]],
-						"f3": [[40,20,0], [0,20,20]],
-						"f4": [[40,0,0], [40,20,20]],
-						"f5": [[0,0,20], [0,20,0]],
-						"f6": [[20,-20,20], [40,0,0]],
-						"f7": [[20,-20,20], [0,0,0]]
 					}
 				}
 
@@ -253,13 +253,23 @@ class Interface:
 
 		return figura			
 
+	def desenhar_faces(self,figura,faces,posicao_x,posicao_y,color="black"):
+		print(faces)
+		for f in faces:
+			face = figura["faces"][f]
+			T = translacao( [figura["vertices"][v] for v in face] , posicao_x, posicao_y)
+			vertices = [(x, y) for x, y, _ in T]
+			self.cv.create_line(vertices+[vertices[0]], fill=color)
+
 	
 	def fechar_janela(self):
 		self.root.destroy()
 
 
 	def tela_inicial(self):
-		back_face(isometrica(self.casa3d()))
+		c = isometrica(self.casa3d())
+		p = back_face(c)
+		self.desenhar_faces(c, p, 100, 100, "blue")
 		fig = isometrica(self.casa3d())
 		self.plotar_figura(fig, 150, 100, "green4")
 		fig_r = self.rotacionar_figura_3d(isometrica(self.casa3d()), 180)
