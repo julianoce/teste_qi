@@ -185,24 +185,24 @@ class Interface:
 						"v10": [20, -20, 20, 1],
 
 					},
+					"faces": {
+						"f1": ["v4", "v3", "v2", "v1", "v5"],
+						"f2": ["v6","v7","v8","v9","v10"],
+						"f3": ["v2","v7","v8","v3"],
+						"f4": ["v3","v8","v9","v4"],
+						"f5": ["v6","v1","v2","v7"],
+						"f6": ["v10","v9","v4","v5"],
+						"f7": ["v5","v10","v6","v1"]
+					}
 					# "faces": {
 					# 	"f1": ["v1", "v2", "v3", "v4", "v5"],
-					# 	"f2": ["v6","v10","v9","v8","v7"],
-					# 	"f3": ["v2","v7","v8","v3"],
+					# 	"f2": ["v6","v7","v8","v9","v10"],
+					# 	"f3": ["v2","v3","v8","v7"],
 					# 	"f4": ["v3","v8","v9","v4"],
-					# 	"f5": ["v1","v6","v7","v2"],
-					# 	"f6": ["v4","v9","v5","v10"],
+					# 	"f5": ["v1","v2","v7","v6"],
+					# 	"f6": ["v4","v5","v10","v9"],
 					# 	"f7": ["v1","v5","v10","v6"]
 					# }
-					"faces": {
-						"f1": ["v1", "v2", "v3", "v4", "v5"],
-						"f2": ["v6","v7","v8","v9","v10"],
-						"f3": ["v2","v3","v8","v7"],
-						"f4": ["v3","v8","v9","v4"],
-						"f5": ["v1","v2","v7","v6"],
-						"f6": ["v4","v5","v10","v9"],
-						"f7": ["v1","v5","v10","v6"]
-					}
 				}
 
 
@@ -270,8 +270,9 @@ class Interface:
 		d = isometrica_z(self.casa3d())
 		p = back_face(d)
 		self.desenhar_faces(c, p, 100, 100, "blue")
+
 		fig = isometrica(self.casa3d())
-		self.plotar_figura(fig, 150, 100, "green4")
+		self.plotar_figura(fig, 200, 100, "green4")
 		fig_r = self.rotacionar_figura_3d(isometrica(self.casa3d()), 180)
 		self.plotar_figura(self.escalonar_figura_3d(fig_r, 2, 2), 152, 290, "gray70")
 		self.plotar_figura(self.escalonar_figura_3d(fig, 2, 2), 200, 250, "blue")

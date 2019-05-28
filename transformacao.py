@@ -109,18 +109,12 @@ def normal(v1,v2):
 def back_face(objeto):
 	resp = list()
 	for f in objeto["faces"]:
-		n = normal(objeto["vertices"][objeto["faces"][f][0]],objeto["vertices"][objeto["faces"][f][1]])
+		n = normal(objeto["vertices"][objeto["faces"][f][0]],objeto["vertices"][objeto["faces"][f][2]])
 		print("face ",end="")
 		print(f)
 		print("normal ",end="")
 		print(n)
-		if (n[2]<=0):
+		if (n[2]>0):
 			resp.append(f)
 	print(resp)
 	return resp
-
-# Passo a passo:
-# - Pegar a figura 3d e fazer as rotações em a projeção
-# - Calcular a normal de cada face
-# - Rodar o algoritmo para ver quais faces são visiveis
-# - Desenhar as faces visiveis
