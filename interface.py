@@ -258,6 +258,7 @@ class Interface:
 			face = figura["faces"][f]
 			T = translacao( [figura["vertices"][v] for v in face] , posicao_x, posicao_y)
 			vertices = [(x, y) for x, y, _ in T]
+			# self.cv.create_polygon(vertices, fill=color)
 			self.cv.create_line(vertices+[vertices[0]], fill=color)
 
 	
