@@ -170,6 +170,8 @@ class Interface:
 			}
 		}
 
+		self.cont = 0
+
 	def casa3d(self):
 		return {
 					"vertices": {
@@ -253,13 +255,22 @@ class Interface:
 
 		return figura			
 
-	def desenhar_faces(self,figura,faces,posicao_x,posicao_y,color="black"):
+	def desenhar_faces(self,figura,faces,posicao_x,posicao_y):
 		for f in faces:
 			face = figura["faces"][f]
 			T = translacao( [figura["vertices"][v] for v in face] , posicao_x, posicao_y)
 			vertices = [(x, y) for x, y, _ in T]
-			# self.cv.create_polygon(vertices, fill=color)
-			self.cv.create_line(vertices+[vertices[0]], fill=color)
+			if (self.cont%3 == 0):
+				self.cont += 1
+				color = "gray39"
+			elif (self.cont%3 == 1):
+				self.cont += 1
+				color = "gray45"
+			else:
+				self.cont += 1
+				color = "gray50"
+			self.cv.create_polygon(vertices, fill=color)
+			# self.cv.create_line(vertices+[vertices[0]], fill=color)
 
 	
 	def fechar_janela(self):
@@ -270,15 +281,13 @@ class Interface:
 		c = isometrica(self.casa3d())
 		d = isometrica_z(self.casa3d())
 		p = back_face(d)
-		self.desenhar_faces(c, p, 100, 100, "blue")
+		self.desenhar_faces(c, p, 100, 100)
 
 		fig = isometrica(self.casa3d())
 		self.plotar_figura(fig, 200, 100, "green4")
 		fig_r = self.rotacionar_figura_3d(isometrica(self.casa3d()), 180)
 		self.plotar_figura(self.escalonar_figura_3d(fig_r, 2, 2), 152, 290, "gray70")
 		self.plotar_figura(self.escalonar_figura_3d(fig, 2, 2), 200, 250, "blue")
-
-
 
 		self.cv.create_text(170,30,fill="blue",font="Helvetica 30", text="Teste De QI")
 		self.comecar = tk.Button(self.cv, text = 'Começar', width = 7, command=self.primeira_pergunta)
@@ -697,6 +706,10 @@ class Interface:
 		self.cv.create_text(170,30,fill="blue",font="Helvetica 20", text="Você acertou "+str(self.pontuacao)+" pontos!")
 		self.cv.create_text(170,90,fill="red",font="Helvetica 12", text="Tempo Total: "+str(round(self.tempo_total))+" segundos")
 
+		c = isometrica(self.casa3d())
+		d = isometrica_z(self.casa3d())
+		p = back_face(d)
+		self.desenhar_faces(self.escalonar_figura_3d(c, 2, 2), p, 135, 230)
 
 		self.fechar = tk.Button(self.cv, text = 'Fechar', width = 7, command=self.fechar_janela)
 		self.fechar_window = self.cv.create_window(170, 150, window=self.fechar)
